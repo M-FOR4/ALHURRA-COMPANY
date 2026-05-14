@@ -31,41 +31,39 @@ export default function Navbar() {
   const shouldShowGlass = isScrolled || !isHeroPage;
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        shouldShowGlass ? "glass shadow-sm py-2" : "bg-transparent py-4"
-      }`}
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${shouldShowGlass ? "glass shadow-sm py-2" : "bg-transparent py-4"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center gap-3">
               <div className="relative w-20 h-20 md:w-28 md:h-28 -ml-2">
-                <Image 
-                  src="/logo.png" 
-                  alt="Alhurra Logo" 
-                  fill 
-                  className="object-contain scale-125"
+                <Image
+                  src={shouldShowGlass ? "/logo.png" : "/logo-white.png"}
+                  alt="Alhurra Logo"
+                  fill
+                  className="object-contain scale-125 transition-opacity duration-300"
                   priority
                 />
               </div>
             </Link>
           </div>
-          
+
           <div className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
-                <Link 
+                <Link
                   key={link.href}
-                  href={link.href} 
-                  className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
-                    isActive 
-                      ? "bg-alhurra-orange text-white" 
-                      : shouldShowGlass 
-                        ? "text-slate-600 hover:text-alhurra-orange" 
+                  href={link.href}
+                  className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${isActive
+                      ? "bg-alhurra-orange text-white"
+                      : shouldShowGlass
+                        ? "text-slate-600 hover:text-alhurra-orange"
                         : "text-white/90 hover:text-white hover:bg-white/10"
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -74,7 +72,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex md:hidden items-center">
-            <button 
+            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`p-2 rounded-lg transition-colors ${shouldShowGlass ? "text-alhurra-blue" : "text-white"}`}
             >
@@ -89,15 +87,14 @@ export default function Navbar() {
         <div className="md:hidden glass animate-in slide-in-from-top duration-300">
           <div className="px-4 pt-2 pb-6 space-y-2">
             {navLinks.map((link) => (
-              <Link 
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-4 py-3 rounded-xl text-base font-bold ${
-                  pathname === link.href 
-                    ? "bg-alhurra-orange text-white" 
+                className={`block px-4 py-3 rounded-xl text-base font-bold ${pathname === link.href
+                    ? "bg-alhurra-orange text-white"
                     : "text-slate-700 hover:bg-slate-100"
-                }`}
+                  }`}
               >
                 {link.label}
               </Link>

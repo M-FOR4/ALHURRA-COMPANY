@@ -9,10 +9,10 @@ export default function Home() {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Video Container */}
         <div className="absolute inset-0 z-0">
-          <video 
-            autoPlay 
-            muted 
-            loop 
+          <video
+            autoPlay
+            muted
+            loop
             playsInline
             className="w-full h-full object-cover scale-105"
             poster="https://images.pexels.com/photos/2226458/pexels-photo-2226458.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
@@ -23,8 +23,8 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-alhurra-blue/80 via-alhurra-blue/40 to-alhurra-blue/90 z-10"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-alhurra-blue/60 to-transparent z-10"></div>
         </div>
-        
-        <div className="relative z-20 text-center md:text-left px-4 max-w-7xl mx-auto w-full pt-28 md:pt-36">
+
+        <div className="relative z-20 text-center md:text-left px-4 max-w-7xl mx-auto w-full pt-14 md:pt-16">
           <div className="max-w-4xl animate-in fade-in slide-in-from-left duration-1000">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-alhurra-orange/20 border border-alhurra-orange/30 text-alhurra-orange text-xs font-bold uppercase tracking-widest mb-6">
               <span className="relative flex h-2 w-2">
@@ -33,11 +33,11 @@ export default function Home() {
               </span>
               Misrata Free Zone Operations
             </div>
-            <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-[1.1] tracking-tighter">
+            <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-[1.1] tracking-tighter">
               Global Logistics <br />
               <span className="text-alhurra-orange">Redefined.</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl leading-relaxed font-medium">
+            <p className="text-base md:text-lg text-gray-200 mb-6 max-w-2xl leading-relaxed font-medium">
               Premier shipping, container handling, and state-of-the-art storage solutions at the heart of the Mediterranean trade routes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -52,21 +52,21 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
-            
-            <div className="mt-12 flex items-center gap-8 text-white/60">
-               <div className="flex flex-col">
-                 <span className="text-2xl font-bold text-white">24/7</span>
-                 <span className="text-[10px] uppercase tracking-widest font-bold">Secure Access</span>
-               </div>
-               <div className="w-px h-10 bg-white/20"></div>
-               <div className="flex flex-col">
-                 <span className="text-2xl font-bold text-white">100%</span>
-                 <span className="text-[10px] uppercase tracking-widest font-bold">MFZ Compliant</span>
-               </div>
+
+            <div className="mt-8 flex items-center gap-8 text-white/60">
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold text-white">24/7</span>
+                <span className="text-[10px] uppercase tracking-widest font-bold">Secure Access</span>
+              </div>
+              <div className="w-px h-10 bg-white/20"></div>
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold text-white">100%</span>
+                <span className="text-[10px] uppercase tracking-widest font-bold">MFZ Compliant</span>
+              </div>
             </div>
           </div>
         </div>
-        
+
 
       </section>
 
@@ -83,7 +83,7 @@ export default function Home() {
               <p className="text-gray-600 text-lg leading-relaxed mb-10 max-w-xl">
                 Operating in the Misrata Free Zone gives your business a competitive edge with unparalleled customs advantages and geographical proximity to global markets.
               </p>
-              
+
               <div className="space-y-6">
                 {[
                   { icon: Map, title: "Strategic Mediterranean Coast", desc: "Prime location connecting Europe, Africa, and the Middle East." },
@@ -102,25 +102,25 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            
+
             <div className="relative">
               <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                  alt="Logistics Operations" 
+                <img
+                  src="https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                  alt="Logistics Operations"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-alhurra-blue/60 to-transparent"></div>
                 <div className="absolute bottom-8 left-8 right-8 glass p-6 rounded-2xl">
-                   <div className="flex items-center gap-4">
-                     <div className="w-12 h-12 rounded-full bg-alhurra-orange flex items-center justify-center text-white">
-                        <Play className="h-5 w-5 fill-current" />
-                     </div>
-                     <div>
-                       <p className="text-alhurra-blue font-bold">Watch Our Operations</p>
-                       <p className="text-alhurra-blue/60 text-xs">A tour through our MFZ facilities</p>
-                     </div>
-                   </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-alhurra-orange flex items-center justify-center text-white">
+                      <Play className="h-5 w-5 fill-current" />
+                    </div>
+                    <div>
+                      <p className="text-alhurra-blue font-bold">Watch Our Operations</p>
+                      <p className="text-alhurra-blue/60 text-xs">A tour through our MFZ facilities</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               {/* Decorative elements */}
@@ -145,21 +145,21 @@ export default function Home() {
               </Button>
             </Link>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { 
-                title: "Container Unloading", 
+              {
+                title: "Container Unloading",
                 desc: "High-speed unloading of 20ft & 40ft containers with industrial precision.",
                 img: "https://images.pexels.com/photos/280221/pexels-photo-280221.jpeg?auto=compress&cs=tinysrgb&w=800"
               },
-              { 
-                title: "Advanced Storage", 
+              {
+                title: "Advanced Storage",
                 desc: "Temperature controlled and bonded warehousing inside the Free Zone.",
                 img: "https://images.pexels.com/photos/4481258/pexels-photo-4481258.jpeg?auto=compress&cs=tinysrgb&w=800"
               },
-              { 
-                title: "Customs Solutions", 
+              {
+                title: "Customs Solutions",
                 desc: "Direct integration with MFZ customs for expedited cargo release.",
                 img: "https://images.pexels.com/photos/4484155/pexels-photo-4484155.jpeg?auto=compress&cs=tinysrgb&w=800"
               }
@@ -181,7 +181,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
       {/* Call to Action */}
       <section className="py-24 px-4">
         <div className="max-w-7xl mx-auto rounded-[3rem] bg-alhurra-blue relative overflow-hidden p-12 md:p-24 text-center">
