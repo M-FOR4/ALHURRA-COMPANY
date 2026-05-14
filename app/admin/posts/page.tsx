@@ -143,24 +143,25 @@ export default function AdminPostsPage() {
           {posts.map((post) => (
             <Card key={post.id} className="hover:shadow-md transition-shadow">
               <CardContent className="py-4 px-6">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 mb-1">
+                    <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-1">
                       <h3 className="font-semibold text-gray-900 truncate">
                         {post.title}
                       </h3>
-                      <span
-                        className={`px-2 py-0.5 text-xs rounded-full font-medium ${
-                          post.status === "published"
-                            ? "bg-green-100 text-green-700"
-                            : "bg-yellow-100 text-yellow-700"
-                        }`}
-                      >
-                        {post.status}
-                      </span>
-                      <span className="px-2 py-0.5 text-xs rounded-full bg-blue-100 text-blue-700 font-medium">
-                        {post.operation_type}
-                      </span>
+                      <div className="flex gap-2">
+                        <span
+                          className={`px-2 py-0.5 text-xs rounded-full font-medium ${post.status === "published"
+                              ? "bg-green-100 text-green-700"
+                              : "bg-yellow-100 text-yellow-700"
+                            }`}
+                        >
+                          {post.status}
+                        </span>
+                        <span className="px-2 py-0.5 text-xs rounded-full bg-blue-100 text-blue-700 font-medium">
+                          {post.operation_type}
+                        </span>
+                      </div>
                     </div>
                     <div className="flex items-center gap-4 text-sm text-gray-500">
                       <span>
@@ -175,33 +176,33 @@ export default function AdminPostsPage() {
                           {post.post_media.filter(
                             (m) => m.media_type === "image"
                           ).length > 0 && (
-                            <span className="flex items-center gap-0.5">
-                              <ImageIcon className="w-3.5 h-3.5" />
-                              {
-                                post.post_media.filter(
-                                  (m) => m.media_type === "image"
-                                ).length
-                              }
-                            </span>
-                          )}
+                              <span className="flex items-center gap-0.5">
+                                <ImageIcon className="w-3.5 h-3.5" />
+                                {
+                                  post.post_media.filter(
+                                    (m) => m.media_type === "image"
+                                  ).length
+                                }
+                              </span>
+                            )}
                           {post.post_media.filter(
                             (m) => m.media_type === "video"
                           ).length > 0 && (
-                            <span className="flex items-center gap-0.5 ml-2">
-                              <Video className="w-3.5 h-3.5" />
-                              {
-                                post.post_media.filter(
-                                  (m) => m.media_type === "video"
-                                ).length
-                              }
-                            </span>
-                          )}
+                              <span className="flex items-center gap-0.5 ml-2">
+                                <Video className="w-3.5 h-3.5" />
+                                {
+                                  post.post_media.filter(
+                                    (m) => m.media_type === "video"
+                                  ).length
+                                }
+                              </span>
+                            )}
                         </span>
                       )}
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2 ml-4">
+                  <div className="flex items-center gap-2 border-t md:border-t-0 pt-3 md:pt-0">
                     <button
                       onClick={() => toggleStatus(post)}
                       title={

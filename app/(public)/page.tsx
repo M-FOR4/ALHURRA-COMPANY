@@ -42,9 +42,9 @@ export default async function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-alhurra-blue/60 to-transparent z-10" />
         </div>
 
-        <div className="relative z-20 text-center md:text-left px-4 max-w-7xl mx-auto w-full pt-14 md:pt-16">
+        <div className="relative z-20 text-center md:text-left px-4 max-w-7xl mx-auto w-full pt-10 md:pt-8">
           <div className="max-w-4xl animate-in fade-in slide-in-from-left duration-1000">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-alhurra-orange/20 border border-alhurra-orange/30 text-alhurra-orange text-xs font-bold uppercase tracking-widest mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-alhurra-orange/20 border border-alhurra-orange/30 text-alhurra-orange text-xs font-bold uppercase tracking-widest mb-2">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-alhurra-orange opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-alhurra-orange" />
