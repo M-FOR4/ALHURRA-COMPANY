@@ -22,10 +22,6 @@ import {
   MessageCircle,
   MapPin,
   ExternalLink,
-  Facebook,
-  Instagram,
-  Twitter,
-  Linkedin
 } from "lucide-react";
 
 interface ContactSettings {
