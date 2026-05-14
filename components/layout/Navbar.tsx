@@ -41,7 +41,7 @@ export default function Navbar() {
             <Link href="/" className="flex-shrink-0 flex items-center gap-3">
               <div className="relative w-20 h-20 md:w-28 md:h-28 -ml-2">
                 <Image
-                  src={shouldShowGlass ? "/logo.png" : "/logo-white.png"}
+                  src={shouldShowGlass ? "/logo.png" : "/logo-white-v2.png"}
                   alt="Alhurra Logo"
                   fill
                   className="object-contain scale-125 transition-opacity duration-300"
@@ -59,10 +59,10 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${isActive
-                      ? "bg-alhurra-orange text-white"
-                      : shouldShowGlass
-                        ? "text-slate-600 hover:text-alhurra-orange"
-                        : "text-white/90 hover:text-white hover:bg-white/10"
+                    ? "bg-alhurra-orange text-white"
+                    : shouldShowGlass
+                      ? "text-slate-600 hover:text-alhurra-orange"
+                      : "text-white/90 hover:text-white hover:bg-white/10"
                     }`}
                 >
                   {link.label}
@@ -92,8 +92,8 @@ export default function Navbar() {
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`block px-4 py-3 rounded-xl text-base font-bold ${pathname === link.href
-                    ? "bg-alhurra-orange text-white"
-                    : "text-slate-700 hover:bg-slate-100"
+                  ? "bg-alhurra-orange text-white"
+                  : "text-slate-700 hover:bg-slate-100"
                   }`}
               >
                 {link.label}

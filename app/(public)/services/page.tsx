@@ -1,134 +1,350 @@
 import { supabase } from "@/lib/supabase";
-import { PackageOpen, Warehouse, Boxes, Move, FileText, ClipboardCheck, Building, ThermometerSnowflake, Truck, Key, Laptop, Globe, LucideIcon, ChevronRight } from "lucide-react";
+import {
+  PackageOpen, Warehouse, Boxes, Move, FileText, ClipboardCheck,
+  Building, ThermometerSnowflake, Truck, Key, Laptop, Globe,
+  Anchor, ShieldCheck, LucideIcon, ChevronRight, ArrowRight,
+  CheckCircle2, Star, Zap, Clock, Shield,
+} from "lucide-react";
+import Link from "next/link";
 import Image from "next/image";
 
-// Map string icon names to Lucide components
+// ─── Icon Map ─────────────────────────────────────────────
 const iconMap: Record<string, LucideIcon> = {
-  PackageOpen,
-  Warehouse,
-  Boxes,
-  Move,
-  FileText,
-  ClipboardCheck,
-  Building,
-  ThermometerSnowflake,
-  Truck,
-  Key,
-  Laptop,
-  Globe,
+  PackageOpen, Warehouse, Boxes, Move, FileText, ClipboardCheck,
+  Building, ThermometerSnowflake, Truck, Key, Laptop, Globe,
+  Anchor, ShieldCheck,
 };
 
-export const revalidate = 60; // Revalidate every minute
+// ─── Fallback stock images per service index ──────────────
+const FALLBACK_IMAGES = [
+  "https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "https://images.pexels.com/photos/4481258/pexels-photo-4481258.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "https://images.pexels.com/photos/4484155/pexels-photo-4484155.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "https://images.pexels.com/photos/906494/pexels-photo-906494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "https://images.pexels.com/photos/280221/pexels-photo-280221.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+];
+
+const FUTURE_IMAGES = [
+  "https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/2226458/pexels-photo-2226458.jpeg?auto=compress&cs=tinysrgb&w=800",
+];
+
+export const revalidate = 60;
 
 async function getServices() {
   const { data, error } = await supabase
     .from("services")
     .select("*")
+    .order("sort_order")
     .order("id");
-  
-  if (error) {
-    console.error("Error fetching services:", error);
-    return [];
-  }
+  if (error) { console.error(error); return []; }
   return data;
 }
 
 export default async function Services() {
   const services = await getServices();
-  
   const currentServices = services.filter((s) => s.category === "Current");
   const futureServices = services.filter((s) => s.category === "Future");
 
   return (
-    <div className="bg-slate-50 min-h-screen">
-      {/* Header Section */}
-      <section className="relative pt-32 pb-20 bg-alhurra-blue overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-           <Image 
-             src="https://images.pexels.com/photos/2226458/pexels-photo-2226458.jpeg" 
-             alt="Background" 
-             fill 
-             className="object-cover"
-           />
+    <div className="bg-white min-h-screen">
+
+      {/* ══════════════════════════════════════════════════════
+          HERO SECTION
+      ══════════════════════════════════════════════════════ */}
+      <section className="relative min-h-[70vh] flex items-end overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Logistics Operations"
+            fill
+            className="object-cover scale-105"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/70 to-[#0A1628]/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628] to-transparent" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-alhurra-blue/80 to-alhurra-blue"></div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-alhurra-orange font-bold uppercase tracking-[0.25em] text-sm mb-4 block">Our Expertise</span>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
-            Logistics Solutions & Services
-          </h1>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Tailored operations designed for efficiency within the strategic framework of the Misrata Free Zone.
-          </p>
+
+        {/* Animated grid overlay */}
+        <div className="absolute inset-0 z-0 opacity-10" style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: "80px 80px"
+        }} />
+
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-40">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-alhurra-orange/20 border border-alhurra-orange/40 text-alhurra-orange text-xs font-bold uppercase tracking-widest mb-6">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-alhurra-orange opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-alhurra-orange" />
+              </span>
+              Our Expertise
+            </div>
+            <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[1.05] tracking-tighter">
+              World-Class
+              <br />
+              <span className="text-alhurra-orange">Logistics</span>
+              <br />
+              Solutions
+            </h1>
+            <p className="text-xl text-white/70 max-w-2xl leading-relaxed">
+              Tailored operations designed for maximum efficiency within the strategic framework of the Misrata Free Zone — connecting Libya to global trade.
+            </p>
+
+            <div className="mt-10 flex items-center gap-8">
+              {[
+                { icon: Shield, label: "MFZ Certified" },
+                { icon: Clock, label: "24/7 Operations" },
+                { icon: Zap, label: "Fast Clearance" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-2 text-white/70">
+                  <item.icon className="w-4 h-4 text-alhurra-orange" />
+                  <span className="text-sm font-semibold">{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-10" />
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          CURRENT SERVICES — Alternating Layout
+      ══════════════════════════════════════════════════════ */}
+      <section className="py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="flex items-center gap-4 mb-20">
+            <div>
+              <span className="text-alhurra-orange font-extrabold uppercase tracking-[0.25em] text-xs">Active Operations</span>
+              <h2 className="text-4xl md:text-5xl font-black text-alhurra-blue mt-2 tracking-tight">
+                What We Do Today
+              </h2>
+            </div>
+            <div className="flex-1 h-px bg-gradient-to-r from-slate-200 to-transparent ml-8" />
+            <span className="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider border border-emerald-200">
+              ✓ Available Now
+            </span>
+          </div>
+
+          {/* Alternating Service Blocks */}
+          {currentServices.length > 0 ? (
+            <div className="space-y-0">
+              {currentServices.map((service, idx) => {
+                const Icon = iconMap[service.icon_name] || PackageOpen;
+                const imgSrc = service.image_url || FALLBACK_IMAGES[idx % FALLBACK_IMAGES.length];
+                const isEven = idx % 2 === 0;
+
+                return (
+                  <div key={service.id}
+                    className={`group grid lg:grid-cols-2 gap-0 items-stretch rounded-none border-b border-slate-100 last:border-0 ${idx === 0 ? "rounded-t-[3rem] overflow-hidden" : ""} ${idx === currentServices.length - 1 ? "rounded-b-[3rem] overflow-hidden" : ""}`}>
+
+                    {/* Image Block */}
+                    <div className={`relative h-[420px] overflow-hidden ${isEven ? "order-1" : "order-2 lg:order-2"}`} >
+                      <Image src={imgSrc} alt={service.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                      {/* dark overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-alhurra-blue/30 to-transparent group-hover:from-alhurra-blue/10 transition-all duration-500" />
+                      {/* Icon floating badge */}
+                      <div className="absolute top-6 left-6 w-14 h-14 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-xl">
+                        <Icon className="w-7 h-7 text-alhurra-blue" />
+                      </div>
+                      {/* Number */}
+                      <div className="absolute bottom-6 right-6 text-8xl font-black text-white/10 select-none leading-none">
+                        {String(idx + 1).padStart(2, "0")}
+                      </div>
+                    </div>
+
+                    {/* Text Block */}
+                    <div className={`relative flex flex-col justify-center p-12 lg:p-16 bg-white ${isEven ? "order-2" : "order-1 lg:order-1"}`}>
+                      {/* Subtle side accent */}
+                      <div className={`absolute top-0 bottom-0 w-1 bg-gradient-to-b from-alhurra-orange to-alhurra-blue/20 ${isEven ? "left-0" : "right-0"}`} />
+
+                      {service.subtitle && (
+                        <span className="text-alhurra-orange font-extrabold uppercase tracking-[0.2em] text-xs mb-4 block">
+                          {service.subtitle}
+                        </span>
+                      )}
+                      <h3 className="text-3xl md:text-4xl font-black text-alhurra-blue mb-5 tracking-tight leading-tight">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-500 text-lg leading-relaxed mb-8 max-w-md">
+                        {service.description || "Comprehensive logistics service designed for the Misrata Free Zone environment."}
+                      </p>
+
+                      {/* Feature bullets */}
+                      <div className="space-y-2 mb-8">
+                        {["MFZ Certified & Compliant", "Real-time Tracking", "Licensed Operations"].map((f, fi) => (
+                          <div key={fi} className="flex items-center gap-2 text-sm text-gray-500">
+                            <CheckCircle2 className="w-4 h-4 text-alhurra-orange flex-shrink-0" />
+                            {f}
+                          </div>
+                        ))}
+                      </div>
+
+                      <Link href="/contact"
+                        className="inline-flex items-center gap-2 text-alhurra-blue font-black text-sm uppercase tracking-widest group/link hover:text-alhurra-orange transition-colors">
+                        Request This Service
+                        <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-24 rounded-3xl border-2 border-dashed border-slate-200">
+              <PackageOpen className="w-12 h-12 mx-auto text-slate-300 mb-4" />
+              <p className="text-slate-400">لا توجد خدمات متاحة حالياً</p>
+            </div>
+          )}
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        {/* Current Services */}
-        <div className="mb-24">
-          <div className="flex items-center gap-4 mb-12">
-            <h2 className="text-3xl font-extrabold text-alhurra-blue tracking-tight">Active Operations</h2>
-            <div className="flex-1 h-px bg-slate-200"></div>
-            <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Available Now</span>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {currentServices.length > 0 ? currentServices.map((service) => {
-              const Icon = iconMap[service.icon_name] || PackageOpen;
-              return (
-                <div key={service.id} className="group bg-white rounded-[2rem] p-10 shadow-sm border border-slate-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
-                  <div className="bg-slate-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-alhurra-blue transition-colors duration-300">
-                    <Icon className="w-8 h-8 text-alhurra-blue group-hover:text-white transition-colors duration-300" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">{service.title}</h3>
-                  <p className="text-slate-500 leading-relaxed mb-6">{service.description}</p>
-                  <div className="h-px bg-slate-100 w-full mb-6"></div>
-                  <div className="flex items-center text-alhurra-orange font-bold text-sm uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
-                    Authorized MFZ Service <ChevronRight className="ml-1 w-4 h-4" />
-                  </div>
+      {/* ══════════════════════════════════════════════════════
+          STATS DIVIDER
+      ══════════════════════════════════════════════════════ */}
+      <section className="py-20 bg-alhurra-blue relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)",
+          backgroundSize: "30px 30px"
+        }} />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { value: "100%", label: "MFZ Compliance" },
+              { value: "24/7", label: "Operations" },
+              { value: "5+", label: "Active Services" },
+              { value: "Fast", label: "Customs Clearance" },
+            ].map((stat, i) => (
+              <div key={i} className="group">
+                <div className="text-4xl md:text-5xl font-black text-alhurra-orange mb-2 group-hover:scale-110 transition-transform">
+                  {stat.value}
                 </div>
-              );
-            }) : (
-              <div className="col-span-full text-center py-20 bg-white rounded-[2rem] border-2 border-dashed border-slate-200">
-                <p className="text-slate-400">Services list is being updated...</p>
+                <div className="text-white/60 text-sm font-semibold uppercase tracking-widest">{stat.label}</div>
               </div>
-            )}
+            ))}
           </div>
         </div>
+      </section>
 
-        {/* Future Expansion Plans */}
-        <section className="bg-slate-900 rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
-          <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-alhurra-orange/10 rounded-full blur-3xl"></div>
-          
-          <div className="relative z-10">
-            <div className="flex items-center gap-4 mb-12">
-              <h2 className="text-3xl font-extrabold text-white tracking-tight">Future Expansion</h2>
-              <div className="flex-1 h-px bg-white/10"></div>
-              <span className="bg-alhurra-orange/20 text-alhurra-orange px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Coming Soon</span>
+      {/* ══════════════════════════════════════════════════════
+          FUTURE EXPANSION — Mosaic/Magazine Layout
+      ══════════════════════════════════════════════════════ */}
+      {futureServices.length > 0 && (
+        <section className="py-28 bg-[#06101E] relative overflow-hidden">
+          {/* Background texture */}
+          <div className="absolute inset-0 opacity-20" style={{
+            backgroundImage: `linear-gradient(rgba(255,165,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,165,0,0.05) 1px, transparent 1px)`,
+            backgroundSize: "60px 60px"
+          }} />
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-alhurra-orange/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-alhurra-blue/20 rounded-full blur-3xl" />
+
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center gap-4 mb-16">
+              <div>
+                <span className="text-alhurra-orange/70 font-extrabold uppercase tracking-[0.25em] text-xs">Horizon</span>
+                <h2 className="text-4xl md:text-5xl font-black text-white mt-2 tracking-tight">
+                  Future Expansion
+                </h2>
+              </div>
+              <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent ml-8" />
+              <span className="bg-alhurra-orange/20 text-alhurra-orange px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider border border-alhurra-orange/30">
+                Coming Soon
+              </span>
             </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {futureServices.length > 0 ? futureServices.map((service) => {
+
+            {/* Magazine Grid */}
+            <div className={`grid gap-6 ${futureServices.length >= 3 ? "md:grid-cols-3" : futureServices.length === 2 ? "md:grid-cols-2" : "grid-cols-1"}`}>
+              {futureServices.map((service, idx) => {
                 const Icon = iconMap[service.icon_name] || Laptop;
+                const imgSrc = service.image_url || FUTURE_IMAGES[idx % FUTURE_IMAGES.length];
+                const isFeatured = service.featured || idx === 0;
+
                 return (
-                  <div key={service.id} className="bg-white/5 border border-white/10 rounded-[2rem] p-10 backdrop-blur-sm hover:bg-white/10 transition-colors">
-                    <div className="bg-alhurra-orange/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-8">
-                      <Icon className="w-8 h-8 text-alhurra-orange" />
+                  <div key={service.id}
+                    className={`group relative rounded-3xl overflow-hidden cursor-default ${isFeatured && idx === 0 && futureServices.length >= 3 ? "md:col-span-2 md:row-span-1" : ""}`}
+                    style={{ minHeight: isFeatured && idx === 0 ? "420px" : "300px" }}>
+
+                    {/* Background Image */}
+                    <div className="absolute inset-0">
+                      <Image src={imgSrc} alt={service.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700 saturate-50 group-hover:saturate-100" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{service.title}</h3>
-                    <p className="text-slate-400 leading-relaxed">{service.description}</p>
+
+                    {/* Content */}
+                    <div className="relative h-full flex flex-col justify-between p-8" style={{ minHeight: "inherit" }}>
+                      {/* Top row */}
+                      <div className="flex items-start justify-between">
+                        <div className="w-12 h-12 rounded-2xl bg-alhurra-orange/20 border border-alhurra-orange/30 backdrop-blur-sm flex items-center justify-center">
+                          <Icon className="w-6 h-6 text-alhurra-orange" />
+                        </div>
+                        <span className="text-[10px] font-black text-alhurra-orange/80 uppercase tracking-[0.2em] bg-alhurra-orange/10 border border-alhurra-orange/20 px-2.5 py-1 rounded-full backdrop-blur-sm">
+                          Coming Soon
+                        </span>
+                      </div>
+
+                      {/* Bottom text */}
+                      <div>
+                        {service.subtitle && (
+                          <p className="text-alhurra-orange/80 text-xs font-bold uppercase tracking-widest mb-2">{service.subtitle}</p>
+                        )}
+                        <h3 className="text-2xl font-black text-white mb-3 tracking-tight">{service.title}</h3>
+                        <p className="text-white/60 text-sm leading-relaxed line-clamp-3">{service.description}</p>
+
+                        {/* Progress bar (decorative) */}
+                        <div className="mt-5">
+                          <div className="flex items-center justify-between text-[10px] text-white/40 mb-1.5">
+                            <span>Development Progress</span>
+                            <span>{30 + idx * 20}%</span>
+                          </div>
+                          <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+                            <div className="h-full bg-gradient-to-r from-alhurra-orange to-amber-400 rounded-full"
+                              style={{ width: `${30 + idx * 20}%` }} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 );
-              }) : (
-                <div className="col-span-full text-center py-12 text-slate-500">
-                  Expansion plans in progress...
-                </div>
-              )}
+              })}
             </div>
           </div>
         </section>
-      </div>
+      )}
+
+      {/* ══════════════════════════════════════════════════════
+          FINAL CTA
+      ══════════════════════════════════════════════════════ */}
+      <section className="py-28 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(230,100,30,0.06),transparent_60%)]" />
+        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+          <span className="text-alhurra-orange font-extrabold uppercase tracking-[0.25em] text-xs mb-4 block">Get Started</span>
+          <h2 className="text-5xl font-black text-alhurra-blue mb-6 tracking-tight">
+            Ready to Move
+            <br />
+            <span className="text-alhurra-orange">Your Cargo Forward?</span>
+          </h2>
+          <p className="text-gray-500 text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+            Our specialists are ready to design a custom logistics solution tailored to your business needs within the Misrata Free Zone.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/contact"
+              className="inline-flex items-center gap-2 px-10 py-4 bg-alhurra-blue text-white font-bold rounded-2xl hover:bg-alhurra-blue/90 hover:scale-105 transition-all shadow-xl shadow-alhurra-blue/20">
+              Contact Our Team <ArrowRight className="w-5 h-5" />
+            </Link>
+            <Link href="/operations-log"
+              className="inline-flex items-center gap-2 px-10 py-4 border-2 border-slate-200 text-alhurra-blue font-bold rounded-2xl hover:border-alhurra-blue transition-all">
+              View Active Operations <ChevronRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
