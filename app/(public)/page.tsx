@@ -24,7 +24,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-alhurra-blue/60 to-transparent z-10"></div>
         </div>
         
-        <div className="relative z-20 text-center md:text-left px-4 max-w-7xl mx-auto w-full">
+        <div className="relative z-20 text-center md:text-left px-4 max-w-7xl mx-auto w-full pt-28 md:pt-36">
           <div className="max-w-4xl animate-in fade-in slide-in-from-left duration-1000">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-alhurra-orange/20 border border-alhurra-orange/30 text-alhurra-orange text-xs font-bold uppercase tracking-widest mb-6">
               <span className="relative flex h-2 w-2">
@@ -67,12 +67,7 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-          <div className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center p-1">
-            <div className="w-1 h-2 bg-white rounded-full"></div>
-          </div>
-        </div>
+
       </section>
 
       {/* Strategic Advantages Section */}

@@ -49,14 +49,6 @@ export default function Navbar() {
                   priority
                 />
               </div>
-              <div className="flex flex-col">
-                <span className={`font-bold text-xl md:text-2xl tracking-tighter leading-none ${shouldShowGlass ? "text-alhurra-blue" : "text-white"}`}>
-                  ALHURRA
-                </span>
-                <span className={`text-[10px] font-bold tracking-[0.2em] uppercase text-alhurra-orange`}>
-                  Logistics
-                </span>
-              </div>
             </Link>
           </div>
           
