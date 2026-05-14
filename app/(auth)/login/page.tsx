@@ -62,45 +62,35 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-900 flex flex-col justify-center py-6 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-        <Image 
-          src="https://images.pexels.com/photos/2226458/pexels-photo-2226458.jpeg" 
-          alt="background" 
-          fill 
+        <Image
+          src="https://images.pexels.com/photos/2226458/pexels-photo-2226458.jpeg"
+          alt="background"
+          fill
           className="object-cover"
         />
       </div>
-      
-      <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
-        <div className="flex justify-center">
-          <div className="relative w-32 h-32">
-            <Image 
-              src="/logo.png" 
-              alt="Alhurra Logo" 
-              fill
-              className="object-contain"
-            />
-          </div>
-        </div>
-        <h2 className="mt-8 text-center text-4xl font-extrabold text-white tracking-tight">
+
+      <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 pt-4">
+        <h2 className="text-center text-3xl font-extrabold text-white tracking-tight">
           Admin Portal
         </h2>
-        <p className="mt-3 text-center text-sm text-slate-400 font-medium">
+        <p className="mt-1 text-center text-sm text-slate-400 font-medium">
           Enter your credentials to manage Alhurra Logistics
         </p>
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-md relative z-10">
-        <div className="glass-dark py-10 px-4 shadow-2xl sm:rounded-[2.5rem] sm:px-12 border border-white/10">
+      <div className="mt-4 sm:mx-auto sm:w-full sm:max-w-md relative z-10">
+        <div className="glass-dark py-8 px-4 shadow-2xl sm:rounded-[2.5rem] sm:px-12 border border-white/10">
           <form className="space-y-6" onSubmit={handleLogin}>
             {error && (
               <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-2xl text-sm animate-shake">
                 {error}
               </div>
             )}
-            
+
             <div>
               <label htmlFor="username" className="block text-sm font-bold text-slate-300 mb-2 ml-1">
                 Username
@@ -149,7 +139,7 @@ export default function AdminLogin() {
               </Button>
             </div>
           </form>
-          
+
           <div className="mt-8 text-center">
             <Link href="/" className="text-slate-500 hover:text-white text-sm transition-colors">
               &larr; Back to Public Website

@@ -31,7 +31,7 @@ const FUTURE_IMAGES = [
   "https://images.pexels.com/photos/2226458/pexels-photo-2226458.jpeg?auto=compress&cs=tinysrgb&w=800",
 ];
 
-export const revalidate = 60;
+export const revalidate = 0; // Force dynamic to see changes instantly during setup
 
 async function getServices() {
   const { data, error } = await supabase
