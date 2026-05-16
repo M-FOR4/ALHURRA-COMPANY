@@ -54,8 +54,6 @@ export default function Navbar() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${shouldShowGlass ? "bg-white shadow-sm py-2" : "bg-transparent py-4"
           }`}
       >
-        {/* DEBUG BADGE - REMOVE AFTER TESTING */}
-        <div style={{ position: "absolute", top: 0, right: 0, background: "red", color: "white", fontSize: 10, padding: "2px 6px", zIndex: 9999 }}>v3</div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
@@ -118,50 +116,28 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu — inline styles to bypass any Tailwind/CSS conflicts */}
+      {/* Mobile Menu Backdrop */}
       {isMobileMenuOpen && (
         <div
+          className="fixed inset-0 z-40 md:hidden bg-black/30 backdrop-blur-sm"
           onClick={() => setIsMobileMenuOpen(false)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 9998,
-            background: "rgba(0,0,0,0.3)",
-          }}
           aria-hidden="true"
         />
       )}
+
+      {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div
-          style={{
-            position: "fixed",
-            top: 72,
-            left: 0,
-            right: 0,
-            zIndex: 9999,
-            background: "white",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
-            borderTop: "1px solid #e2e8f0",
-          }}
-        >
-          <div style={{ padding: "16px" }}>
+        <div className="fixed top-[72px] left-0 right-0 z-50 md:hidden bg-white shadow-2xl border-t border-slate-200 animate-in slide-in-from-top duration-300">
+          <div className="px-4 py-4 space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "16px",
-                  marginBottom: 8,
-                  borderRadius: 12,
-                  fontSize: 16,
-                  fontWeight: 700,
-                  textDecoration: "none",
-                  background: pathname === link.href ? "#f97316" : "transparent",
-                  color: pathname === link.href ? "white" : "#334155",
-                }}
+                className={`flex items-center px-4 py-4 rounded-xl text-base font-bold transition-all touch-manipulation ${pathname === link.href
+                    ? "bg-alhurra-orange text-white shadow-md shadow-alhurra-orange/20"
+                    : "text-slate-700 active:bg-slate-100 hover:bg-slate-50"
+                  }`}
               >
                 {link.label}
               </Link>
