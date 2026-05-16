@@ -145,7 +145,7 @@ export default async function Services() {
                     className={`group grid lg:grid-cols-2 gap-0 items-stretch rounded-none border-b border-slate-100 last:border-0 ${idx === 0 ? "rounded-t-[3rem] overflow-hidden" : ""} ${idx === currentServices.length - 1 ? "rounded-b-[3rem] overflow-hidden" : ""}`}>
 
                     {/* Image Block */}
-                    <div className={`relative h-[420px] overflow-hidden ${isEven ? "order-1" : "order-2 lg:order-2"}`} >
+                    <div className={`relative h-[300px] lg:h-[420px] overflow-hidden order-1 ${isEven ? "lg:order-1" : "lg:order-2"}`} >
                       <Image src={imgSrc} alt={service.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
                       {/* dark overlay */}
                       <div className="absolute inset-0 bg-gradient-to-r from-alhurra-blue/30 to-transparent group-hover:from-alhurra-blue/10 transition-all duration-500" />
@@ -154,15 +154,15 @@ export default async function Services() {
                         <Icon className="w-7 h-7 text-alhurra-blue" />
                       </div>
                       {/* Number */}
-                      <div className="absolute bottom-6 right-6 text-8xl font-black text-white/10 select-none leading-none">
+                      <div className="absolute bottom-6 right-6 text-6xl lg:text-8xl font-black text-white/20 select-none leading-none">
                         {String(idx + 1).padStart(2, "0")}
                       </div>
                     </div>
 
                     {/* Text Block */}
-                    <div className={`relative flex flex-col justify-center p-12 lg:p-16 bg-white ${isEven ? "order-2" : "order-1 lg:order-1"}`}>
+                    <div className={`relative flex flex-col justify-center p-8 lg:p-16 bg-white order-2 ${isEven ? "lg:order-2" : "lg:order-1"}`}>
                       {/* Subtle side accent */}
-                      <div className={`absolute top-0 bottom-0 w-1 bg-gradient-to-b from-alhurra-orange to-alhurra-blue/20 ${isEven ? "left-0" : "right-0"}`} />
+                      <div className={`absolute top-0 bottom-0 w-1 bg-gradient-to-b from-alhurra-orange to-alhurra-blue/20 hidden lg:block ${isEven ? "left-0" : "right-0"}`} />
 
                       {service.subtitle && (
                         <span className="text-alhurra-orange font-extrabold uppercase tracking-[0.2em] text-xs mb-4 block">

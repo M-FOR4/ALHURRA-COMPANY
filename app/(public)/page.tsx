@@ -32,7 +32,7 @@ export default async function Home() {
     <div className="relative">
       {/* ══ HERO SECTION ══ */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 pointer-events-none">
           <video autoPlay muted loop playsInline
             className="w-full h-full object-cover scale-105"
             poster="https://images.pexels.com/photos/2226458/pexels-photo-2226458.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
@@ -170,7 +170,7 @@ export default async function Home() {
 
           {/* Mosaic Grid */}
           {featuredServices.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[220px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-4 auto-rows-[300px] md:auto-rows-[220px]">
               {featuredServices.map((service, idx) => {
                 const imgSrc = service.image_url || FALLBACK_IMGS[idx % FALLBACK_IMGS.length];
                 const isFeaturedTall = idx === 0;
@@ -179,32 +179,32 @@ export default async function Home() {
                 return (
                   <Link key={service.id} href="/services"
                     className={`group relative rounded-3xl overflow-hidden cursor-pointer
-                      ${isFeaturedTall ? "row-span-2" : ""}
+                      ${isFeaturedTall ? "md:row-span-2 min-h-[300px] md:min-h-[220px]" : "min-h-[300px] md:min-h-[220px]"}
                       ${isWideMid ? "md:col-span-2" : ""}
                     `}>
                     <img src={imgSrc} alt={service.title}
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 saturate-75 group-hover:saturate-100" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent group-hover:from-alhurra-blue/80 group-hover:via-alhurra-blue/30 transition-all duration-500" />
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="absolute top-4 right-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
                       <span className="text-[10px] font-black text-white bg-alhurra-orange/80 backdrop-blur-sm px-2.5 py-1 rounded-full uppercase tracking-wider">
                         View Service
                       </span>
                     </div>
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <div className="absolute inset-0 p-6 flex flex-col justify-end">
                       {service.subtitle && (
-                        <p className="text-alhurra-orange text-[10px] font-black uppercase tracking-[0.2em] mb-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <p className="text-alhurra-orange text-[10px] font-black uppercase tracking-[0.2em] mb-1 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
                           {service.subtitle}
                         </p>
                       )}
-                      <h3 className={`font-black text-white tracking-tight leading-tight mb-1 ${isFeaturedTall ? "text-2xl md:text-3xl" : "text-lg"}`}>
+                      <h3 className={`font-black text-white tracking-tight leading-tight mb-1 ${isFeaturedTall ? "text-2xl md:text-3xl" : "text-xl md:text-lg"}`}>
                         {service.title}
                       </h3>
                       {isFeaturedTall && service.description && (
-                        <p className="text-white/60 text-sm leading-relaxed line-clamp-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                        <p className="text-white/80 md:text-white/60 text-sm leading-relaxed line-clamp-2 opacity-100 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                           {service.description}
                         </p>
                       )}
-                      <div className="flex items-center gap-1 text-alhurra-orange text-xs font-bold mt-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                      <div className="flex items-center gap-1 text-alhurra-orange text-xs font-bold mt-2 opacity-100 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                         Learn More <ArrowRight className="w-3 h-3" />
                       </div>
                     </div>
@@ -213,19 +213,19 @@ export default async function Home() {
               })}
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[220px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-4 auto-rows-[300px] md:auto-rows-[220px]">
               {[
                 { title: "Container Unloading", subtitle: "Port Operations", img: FALLBACK_IMGS[0], tall: true },
                 { title: "Advanced Storage", subtitle: "Warehousing", img: FALLBACK_IMGS[1], tall: false },
                 { title: "Customs Solutions", subtitle: "MFZ Clearance", img: FALLBACK_IMGS[2], tall: false },
               ].map((s, idx) => (
                 <Link key={idx} href="/services"
-                  className={`group relative rounded-3xl overflow-hidden ${s.tall ? "row-span-2" : ""}`}>
+                  className={`group relative rounded-3xl overflow-hidden min-h-[300px] md:min-h-[220px] ${s.tall ? "md:row-span-2" : ""}`}>
                   <img src={s.img} alt={s.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="absolute inset-0 p-6 flex flex-col justify-end">
                     <p className="text-alhurra-orange text-[10px] font-black uppercase tracking-widest mb-1">{s.subtitle}</p>
-                    <h3 className={`font-black text-white ${s.tall ? "text-2xl" : "text-lg"}`}>{s.title}</h3>
+                    <h3 className={`font-black text-white ${s.tall ? "text-2xl" : "text-xl md:text-lg"}`}>{s.title}</h3>
                   </div>
                 </Link>
               ))}

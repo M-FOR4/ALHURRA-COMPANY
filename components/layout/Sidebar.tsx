@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
 import { createSupabaseBrowser } from "@/lib/supabase";
 import { useState } from "react";
 import {
@@ -57,8 +58,14 @@ export default function Sidebar() {
         ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
       `}>
         {/* Header */}
-        <div className="flex items-center justify-center h-20 border-b border-gray-700 gap-2">
-          <Ship className="w-7 h-7 text-alhurra-orange" />
+        <div className="flex items-center justify-center h-20 border-b border-gray-700 gap-3 px-4">
+          <Image
+            src="/logo-white-v2.png"
+            alt="Alhurra Logo"
+            width={55}
+            height={55}
+            className="object-contain"
+          />
           <span className="font-bold text-lg tracking-wider text-alhurra-orange">
             ADMIN PANEL
           </span>
